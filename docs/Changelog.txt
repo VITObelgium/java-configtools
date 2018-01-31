@@ -1,0 +1,12 @@
+1.0.0:
+	. ConfigurationService component (both Spring and common variants)
+	. loads parameters from a file on the file system,
+	  or from a resource with default settings if that file is missing
+	. allows to change the loglevel from that configuration file 
+	  (no need to edit the logback.xml file inside the .jar file)
+	. allows to configure a rotating log file as alternative to
+	  the default logging to std out.
+	. allows overriding configuration parameters (never use in production
+	  unless you are sure about what you are doing: overridden configuration
+	  parameters can no longer be set through the configuration file)
+	  
