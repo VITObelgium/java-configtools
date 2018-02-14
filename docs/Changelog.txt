@@ -10,3 +10,5 @@
 	  unless you are sure about what you are doing: overridden configuration
 	  parameters can no longer be set through the configuration file)
 	  
+1.0.1:
+	. 	  
