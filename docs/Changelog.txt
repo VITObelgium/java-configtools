@@ -10,5 +10,7 @@
 	  unless you are sure about what you are doing: overridden configuration
 	  parameters can no longer be set through the configuration file)
 	  
-1.0.1:
-	. 	  
+2.0.0:
+	. update to Java 11
+	. added Jenkins configuration
+		  
