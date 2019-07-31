@@ -13,4 +13,6 @@
 2.0.0:
 	. update to Java 11
 	. added Jenkins configuration
-		  
+	
+2.0.1:
+	.	  
