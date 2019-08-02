@@ -15,4 +15,4 @@
 	. added Jenkins configuration
 	
 2.0.1:
-	.	  
+	. getting dependency versions right 	  
