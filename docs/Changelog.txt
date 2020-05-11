@@ -19,4 +19,7 @@
 	
 2.1.0:
 	. added environment variables as a configuration source
-	  	  
+	  	
+2.1.1:
+	.  
+	  
