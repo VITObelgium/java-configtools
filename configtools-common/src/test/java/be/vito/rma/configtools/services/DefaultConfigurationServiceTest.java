@@ -23,8 +23,6 @@ public class DefaultConfigurationServiceTest {
 
 	@Before
 	public void init () {
-
-
 		config = new DefaultConfigurationService(new ConfigurationFileService() {
 			@Override
 			public String getDefaultResourceName() {
@@ -41,11 +39,11 @@ public class DefaultConfigurationServiceTest {
 	@Test
 	public void typeTest () {
 
-		String s = config.getString("value.string");
-		long l = config.getLong("value.long");
-		int i = config.getInt("value.int");
-		double d = config.getDouble("value.double");
-		boolean b = config.getBoolean("value.boolean");
+		final String s = config.getString("value.string");
+		final long l = config.getLong("value.long");
+		final int i = config.getInt("value.int");
+		final double d = config.getDouble("value.double");
+		final boolean b = config.getBoolean("value.boolean");
 
 		Assert.assertEquals("This is a test", s);
 		Assert.assertEquals(123456L, l);
@@ -63,7 +61,7 @@ public class DefaultConfigurationServiceTest {
 		try {
 			config.getString("not.in.file");
 			Assert.fail("requesting configuration parameter not.in.file should fail");
-		} catch (RuntimeException e) {
+		} catch (final RuntimeException e) {
 			Assert.assertEquals("required configuration parameter not.in.file not found", e.getMessage());
 		}
 
@@ -72,8 +70,8 @@ public class DefaultConfigurationServiceTest {
 	@Test
 	public void versionTest() {
 
-		String actualVersion = config.getVersion();
-		String ignoredVersion = config.getString("version");
+		final String actualVersion = config.getVersion();
+		final String ignoredVersion = config.getString("version");
 		Assert.assertNotEquals(ignoredVersion, actualVersion);
 
 	}
@@ -93,7 +91,7 @@ public class DefaultConfigurationServiceTest {
 			out = Files.createTempFile("configtools-test-", ".log").toFile();
 			out.deleteOnExit();
 			return out;
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -101,14 +99,14 @@ public class DefaultConfigurationServiceTest {
 	private int countLines (final File file) {
 		try {
 			return Files.readAllLines(file.toPath()).size();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
 	@Test
 	public void logFileTest () throws IOException {
-		File configFile = getTempFile();
+		final File configFile = getTempFile();
 
 		config.overrideParameter(DefaultConfigurationService.KEY_LOGLEVEL, Level.WARN.toString());
 		config.overrideParameter(DefaultConfigurationService.KEY_LOGFILE, configFile.getAbsolutePath());
@@ -124,4 +122,35 @@ public class DefaultConfigurationServiceTest {
 //		Assert.assertEquals(1, countLines(configFile));
 
 	}
+
+	@Test
+	public void environmentVariablesTest () {
+		final DefaultConfigurationService envConfig = new DefaultConfigurationService(new ConfigurationFileService() {
+			@Override
+			public String getDefaultResourceName() {
+				return "test_default_configuration";
+			}
+
+			@Override
+			public File getConfigFile() {
+				return null;
+			}
+		});
+
+		int count = 0;
+		for (final String envKey : System.getenv().keySet()) {
+			if (!envKey.contains(".")						// points in env var names == problems
+					&& envKey.toUpperCase().equals(envKey)	// lowercase chars in env var names == problems
+					&& System.getenv().get(envKey) != null	// null values env vars == problems
+					&& System.getenv().get(envKey).strip().length() > 0) {	// empty valued env vars == problems
+				final String key = envKey.replace("_", ".").toLowerCase();
+				Assert.assertEquals(System.getenv().get(envKey).strip(), envConfig.getString(key));
+				count++;
+			}
+		}
+		if (count == 0) {
+			Assert.fail("Not a single useable environment variable set: please set at least 1 environment variable to test with.");
+		}
+	}
+
 }

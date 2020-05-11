@@ -17,5 +17,6 @@
 2.0.1:
 	. getting dependency versions right
 	
-2.0.2:
-	.  	  
+2.1.0:
+	. added environment variables as a configuration source
+	  	  
