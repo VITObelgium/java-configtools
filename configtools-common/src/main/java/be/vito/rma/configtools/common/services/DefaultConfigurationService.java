@@ -42,9 +42,11 @@ import lombok.extern.slf4j.Slf4j;
  * 			if present in the configuration file, it will be ignored)
  * 			(if not found in the default configuration, this will result in internal server error)
  *
+ *  if the configuration file is set and does exist, the configuration file is used.
+ *  else if the configuration file is not set or does not exist
  *  if the environment variable CONFIG_USE_DEFAULT has a value (does not matter which value, for example "yes")
- *  and the configuration file is not set or does not exist
- *  then the configuration is read from the environment variables.
+ *  then the default configuration is used
+ *  else (CONFIG_USE_DEFAULT is not set) the configuration is read from the environment variables.
  *  configuration keys are transformed into environment variable names as follows:
  *  	all chars uppercased, and dots replaced by underscores
  *   for example: the configuration key "an.example" results in env. var. name "AN_EXAMPLE"
@@ -212,6 +214,7 @@ public class DefaultConfigurationService  implements ConfigurationService {
 	private String getString (final String key, final ResourceBundle bundle) {
 		final String out = getOptionalString(key, bundle);
 		if (out == null) {
+			// FIXME: key omzetten naar HOOFDLETTERS en _ indien we met env. vars werken
 			final String message = "required configuration parameter " + key + " not found";
 			log.error(message);
 			throw new RuntimeException(message);
