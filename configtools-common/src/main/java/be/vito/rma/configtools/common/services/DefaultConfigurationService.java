@@ -65,16 +65,20 @@ public class DefaultConfigurationService  implements ConfigurationService {
 
 	public DefaultConfigurationService(final ConfigurationFileService configFileService) {
 
+		log.info("DefaultConfigurationService");
 		// load resource bundles
 		try {
 			defaultConfig = ResourceBundle.getBundle(configFileService.getDefaultResourceName());
+			log.info("defaultConfig="+defaultConfig);
 		} catch (MissingResourceException | NullPointerException e) {
+			log.info("exc="+e);
 			final String message = "failed to load default configuration";
 			final RuntimeException ex = new RuntimeException(message);
 			log.error(message, ex);
 			throw ex;
 		}
 		final File configFile = loadConfigurationFile(configFileService.getConfigFile());
+		log.info("configFile="+configFile);
 		if (configFile != null && configFile.exists()) {
 			final String fileName = configFile.getName();
 			log.debug("loading configuration from " + fileName);
