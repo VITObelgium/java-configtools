@@ -33,6 +33,11 @@ public class DefaultConfigurationServiceTest {
 			public File getConfigFile() {
 				return new File("src/test/resources/file/configurationfile.cfg");
 			}
+
+			@Override
+			public boolean neverUseEnvironmentVariables() {
+				return false;
+			}
 		});
 	}
 
@@ -134,6 +139,11 @@ public class DefaultConfigurationServiceTest {
 			@Override
 			public File getConfigFile() {
 				return null;
+			}
+
+			@Override
+			public boolean neverUseEnvironmentVariables() {
+				return false;
 			}
 		});
 

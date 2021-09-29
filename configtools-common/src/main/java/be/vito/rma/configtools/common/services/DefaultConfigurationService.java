@@ -25,7 +25,7 @@ import ch.qos.logback.core.rolling.TimeBasedRollingPolicy;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author (c) 2016-2020 Stijn.VanLooy@vito.be
+ * @author (c) 2016-2021 Stijn.VanLooy@vito.be
  *
  *  "default" (optional) configuration parameters:
  * 		loglevel : reset root log level to the given level
@@ -45,8 +45,10 @@ import lombok.extern.slf4j.Slf4j;
  *  if the configuration file is set and does exist, the configuration file is used.
  *  else if the configuration file is not set or does not exist
  *  if the environment variable CONFIG_USE_DEFAULT has a value (does not matter which value, for example "yes")
+ *    or ConfigurationFileService.neverUseEnvironmentVariables() returns true
  *  then the default configuration is used
- *  else (CONFIG_USE_DEFAULT is not set) the configuration is read from the environment variables.
+ *  else (CONFIG_USE_DEFAULT is not set and cfs.neverUseEnvVars() returns false)
+ *    the configuration is read from the environment variables.
  *  configuration keys are transformed into environment variable names as follows:
  *  	all chars uppercased, and dots replaced by underscores
  *   for example: the configuration key "an.example" results in env. var. name "AN_EXAMPLE"
@@ -91,7 +93,7 @@ public class DefaultConfigurationService  implements ConfigurationService {
 				throw new RuntimeException(e);
 			}
 		} else {
-			if (System.getenv().get(ENV_USE_DEFAULT) != null) {
+			if (configFileService.neverUseEnvironmentVariables() || System.getenv().get(ENV_USE_DEFAULT) != null) {
 				log.debug("using default configuration");
 				config = defaultConfig;
 			} else {

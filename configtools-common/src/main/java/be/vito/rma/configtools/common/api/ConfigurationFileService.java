@@ -25,4 +25,10 @@ public interface ConfigurationFileService {
 	 */
 	public String getDefaultResourceName();
 
+	/**
+	 *
+	 * @return
+	 */
+	public boolean neverUseEnvironmentVariables();
+
 }
