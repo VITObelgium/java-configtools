@@ -71,7 +71,7 @@ public class DefaultConfigurationService  implements ConfigurationService {
 		// load resource bundles
 		try {
 			defaultConfig = ResourceBundle.getBundle(configFileService.getDefaultResourceName());
-			log.info("defaultConfig="+defaultConfig);
+			log.info("defaultConfig="+configFileService.getDefaultResourceName());
 		} catch (MissingResourceException | NullPointerException e) {
 			log.info("exc="+e);
 			final String message = "failed to load default configuration";
