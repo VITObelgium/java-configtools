@@ -21,6 +21,8 @@ jobs:
         run: mvn test
       - name: Sources
         run: mvn source:jar
+      - name: Install
+        run: mvn install
       - name: Javadoc
         run: mvn javadoc:jar
         
