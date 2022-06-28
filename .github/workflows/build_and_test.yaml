@@ -17,12 +17,22 @@ jobs:
           cache: 'maven'
       - name: Build
         run: mvn -DskipTests -B clean package
+        with:
+          cache: 'maven'
       - name: Test
         run: mvn test
+        with:
+          cache: 'maven'
       - name: Sources
         run: mvn source:jar
+        with:
+          cache: 'maven'
       - name: Install
         run: mvn install
+        with:
+          cache: 'maven'
       - name: Javadoc
         run: mvn javadoc:jar
+        with:
+          cache: 'maven'
         
