@@ -19,4 +19,8 @@ jobs:
         run: mvn -DskipTests -B clean package
       - name: Test
         run: mvn test
+      - name: Sources
+        run: mvn source:jar
+      - name: Javadoc
+        run: mvn javadoc:jar
         

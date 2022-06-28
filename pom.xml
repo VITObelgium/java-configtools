@@ -6,6 +6,32 @@
 	<version>2.2.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+	<name>${project.groupId}:${project.artifactId}</name>
+	<description>Tools for handling the configuration of your applications</description>
+	<url>https://github.com/VITObelgium/java-configtools</url>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Stijn Van Looy</name>
+			<email>Stijn.VanLooy@vito.be</email>
+			<organization>VITO</organization>
+			<organizationUrl>http://www.vito.be</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/VITObelgium/java-configtools.git</connection>
+		<developerConnection>scm:git:ssh://github.com/VITObelgium/java-configtools.git</developerConnection>
+		<url>https://github.com/VITObelgium/java-configtools/tree/master</url>
+	</scm>
+
 	<modules>
 		<module>configtools-common</module>
 		<module>configtools-spring</module>
@@ -32,10 +58,20 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<version>3.10.1</version>
 				<configuration>
 			        <release>11</release>
 			    </configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.2.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.4.0</version>
 			</plugin>
 		</plugins>
 	</build>
