@@ -10,6 +10,9 @@ jobs:
   build_and_test:
     runs-on: ubuntu-latest
     
+    env:
+       GPG_TTY: $(tty)
+    
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 11
