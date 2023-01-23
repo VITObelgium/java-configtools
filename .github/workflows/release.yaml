@@ -39,5 +39,9 @@ jobs:
       - name: Javadoc
         run: mvn -B javadoc:jar
       - name: Publish to the Maven Central Repository
+        env:
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
         run: mvn -B deploy
       
