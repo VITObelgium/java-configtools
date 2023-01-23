@@ -25,4 +25,5 @@
 	
 2.2.1:
 	. improved info and debug logging
+	. first open source version (github + maven central)
 	  

@@ -1,6 +1,11 @@
 name: Build and Test
 
-on: [push]
+on:
+  push:
+    branches:
+      - '*'
+      - '!master'
+      - '!develop'
 
 jobs:
   build_and_test:
@@ -18,11 +23,5 @@ jobs:
       - name: Build
         run: mvn -DskipTests -B clean package
       - name: Test
-        run: mvn test
-      - name: Sources
-        run: mvn source:jar
-      - name: Install
-        run: mvn install
-      - name: Javadoc
-        run: mvn javadoc:jar
+        run: mvn -B test
         
