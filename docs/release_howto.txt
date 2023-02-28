@@ -1,7 +1,0 @@
-snapshot versions:
-
-	mvn clean source:jar javadoc:jar deploy -DaltDeploymentRepository=rma.snapshot::default::https://mvn.marvin.vito.local/repository/rma-snapshot
-
-release versions:
-
-	mvn clean source:jar javadoc:jar deploy -DaltDeploymentRepository=rma.release::default::https://mvn.marvin.vito.local/repository/rma
