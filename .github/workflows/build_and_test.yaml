@@ -2,10 +2,10 @@ name: Build and Test
 
 on:
   push:
-    branches:
-      - '!master'
-      - '!main'
-      - '!develop'
+    branches-ignore:
+      - 'master'
+      - 'main'
+      - 'develop'
 
 jobs:
   build_and_test:
