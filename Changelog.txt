@@ -27,5 +27,5 @@
 	. improved info and debug logging
 	. first open source version (github + maven central)
 	  
-2.2.2:
-	. 
+3.0.0:
+	. update to Java 17
