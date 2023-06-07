@@ -13,14 +13,14 @@ Add one (or all) of the following maven dependencies to your project.
 <dependency>
 	<groupId>be.vito.rma.configtools</groupId>
 	<artifactId>configtools-common</artifactId>
-	<version>2.2.2-SNAPSHOT</version>
+	<version>3.0.0</version>
 </dependency>
 ```
 ```
 <dependency>
 	<groupId>be.vito.rma.configtools</groupId>
 	<artifactId>configtools-spring</artifactId>
-	<version>2.2.2-SNAPSHOT</version>
+	<version>3.0.0</version>
 </dependency>
 ```
 
